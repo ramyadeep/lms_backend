@@ -28,7 +28,7 @@ CREATE TABLE Faculties (
     password VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     contact VARCHAR(100),
-    dept_id INT(100),
+    dept_id INT(100) NOT NULL,
     FOREIGN KEY(dept_id) REFERENCES Department(dept_id)
 );
 
@@ -41,17 +41,29 @@ CREATE TABLE Student (
     password VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     contact VARCHAR(100),
-    dept_id INT(100),
+    dept_id INT(100) NOT NULL,
     FOREIGN KEY(dept_id) REFERENCES Department(dept_id)
 );
 
 DROP TABLE Courses;
 
 CREATE TABLE Courses (
-    INT(100) PRIMARY KEY AUTO_INCREMENT,
+    c_id INT(100) PRIMARY KEY AUTO_INCREMENT,
     c_name CHAR(100) NOT NULL,
-    f_id INT(100),
+    f_id INT(100) NOT NULL,
     dept_id INT(100),
     FOREIGN KEY(f_id) REFERENCES Faculty(id),
     FOREIGN KEY(dept_id) REFERENCES Department(dept_id)
+);
+
+DROP TABLE Assignments;
+CREATE TABLE Assignments (
+    id INT(100) PRIMARY KEY AUTO_INCREMENT,
+    topic CHAR(100) NOT NULL,
+    description TEXT(200) NOT NULL,
+    c_id INT(100) NOT NULL,
+    f_id INT(100) NOT NULL,
+    deadline DATE DEFAULT ADDDATE(CURDATE(),7),
+    FOREIGN KEY(f_id) REFERENCES Faculty(id),
+    FOREIGN KEY(c_id) REFERENCES Courses(c_id)
 );

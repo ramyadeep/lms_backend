@@ -10,9 +10,9 @@ module.exports.authenticateToken = (req, res, next) => {
         return;
     }
 
-    jwt.verify(token, privateKey, (err, user) => {
+    jwt.verify(token, privateKey, (err, userData) => {
         if (err) return res.status(403).send({message:'You dont have the privilege.'});
-        req.user = user;
+        req.user = userData.user;
         next();
     })
 }

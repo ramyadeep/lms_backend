@@ -7,7 +7,7 @@ module.exports.addStudent = async (req, res) => {
     const db = await mySqlConn();
     const { f_name, l_name, dept_id, password, email, contact } = req.body;
 
-    if (_.isEmpty(f_name) || _.isEmpty(l_name) || _.isEmpty(dept_id) || _.isEmpty(password)) {
+    if (_.isEmpty(f_name) || _.isEmpty(l_name) || _.isEmpty(_.toString(dept_id)) || _.isEmpty(password)) {
         res.status(400).send({ message: "Please Provide all the fields" });
         return;
     }

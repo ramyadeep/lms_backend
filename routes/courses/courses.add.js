@@ -6,7 +6,7 @@ const _ = require('lodash');
 module.exports.addCourse = async (req, res) => {
     const db = await mySqlConn();
     const { c_name, f_id, dept_id } = req.body;
-    if (_.isEmpty(c_name) || _.isEmpty(f_id) || _.isEmpty(dept_id)) {
+    if (_.isEmpty(c_name) || _.isEmpty(_.toString(f_id)) || _.isEmpty(_.toString(dept_id))) {
         res.status(400).send({ message: "Please Provide all the fields" });
         return;
     }
