@@ -6,7 +6,7 @@ const _ = require('lodash');
 function generateDynamicQuery(params,db) {
     // Process SQL Query
     const { id, dept_id, password, contact, email } = params;
-    let qry = `UPDATE Student SET `;
+    let qry = `UPDATE Students SET `;
     if (dept_id) {
         qry += `dept_id = ${db.escape(dept_id)},`;
     }

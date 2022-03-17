@@ -34,7 +34,7 @@ CREATE TABLE Faculties (
 
 DROP TABLE Students;
 
-CREATE TABLE Student (
+CREATE TABLE Students (
     id INT(100) PRIMARY KEY AUTO_INCREMENT,
     f_name CHAR(100) NOT NULL,
     l_name CHAR(100) NOT NULL,

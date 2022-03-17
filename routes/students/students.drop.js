@@ -10,7 +10,7 @@ module.exports.dropStudent = async (req, res) => {
         res.status(400).send({message:"Student Id is mandatory!"});
         return
     }
-    const qry = `DELETE FROM Student WHERE id = ${db.escape(id)};`;
+    const qry = `DELETE FROM Students WHERE id = ${db.escape(id)};`;
     db.query(qry, (err, result) => {
         if (err) {
             res.status(500).send({ message: err.sqlMessage });

@@ -4,7 +4,7 @@ module.exports.allStudents = async (req, res) => {
     const db = await mySqlConn();
     const {dept_id} = req.body;
 
-    let qry = `SELECT * FROM Student `
+    let qry = `SELECT * FROM Students;`
     if(dept_id){
         qry = qry + `WHERE dept_id = ${db.escape(dept_id)}`
     }
