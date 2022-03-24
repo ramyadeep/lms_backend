@@ -26,6 +26,7 @@ module.exports.login = async (req, res) => {
                             res.status(500).send({ message: "unable to generate a token for the user.", err });
                         }
                         else {
+                            // console.log(`Logged in as ${user.email}`)
                             res.send({
                                 token,                                             // Account Found
                                 // account: user,

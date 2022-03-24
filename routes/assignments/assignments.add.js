@@ -9,7 +9,7 @@ module.exports.addAssignment = async (req, res) => {
 
     if (_.isEmpty(topic) || _.isEmpty(description) || _.isEmpty(_.toString(c_id))) {
         res.status(400).send({ message: "Please Provide all the fields" });
-        console.log(c_id);
+        // console.log(c_id);
         return;
     }
     let qry;

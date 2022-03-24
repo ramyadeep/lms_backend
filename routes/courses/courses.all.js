@@ -4,6 +4,7 @@ const { mySqlConn } = require("../../database/db");    // import database connec
 module.exports.allCourses = async (req, res) => {
     const db = await mySqlConn();
     const qry = `SELECT * FROM COURSES;`;
+    // const qry = `SELECT * FROM COURSES LEFT JOIN faculties ON f_id = faculties.id;`;
     console.log(req.user);
     db.query(qry, (err, result) => {
         if (err) {

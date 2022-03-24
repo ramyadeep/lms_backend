@@ -1,8 +1,14 @@
-INSERT INTO Department (dept_name) VALUES ('CSE');
-INSERT INTO Department (dept_name) VALUES ('CE');
-INSERT INTO Department (dept_name) VALUES ('ME');
-INSERT INTO Department (dept_name) VALUES ('ECE');
+// Departments
+INSERT INTO Departments (dept_name) VALUES ('CSE');
+INSERT INTO Departments (dept_name) VALUES ('CE');
+INSERT INTO Departments (dept_name) VALUES ('ME');
+INSERT INTO Departments (dept_name) VALUES ('ECE');
 
+//Faculties
+
+INSERT INTO Faculties () VALUES ();
+
+// Courses
 
 
 

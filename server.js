@@ -13,6 +13,8 @@ const { dropStudent } = require('./routes/students/students.drop');
 const { updateStudent } = require('./routes/students/students.update');
 const { addAssignment } = require('./routes/assignments/assignments.add');
 const { allAssignments } = require('./routes/assignments/assignments.all');
+const { marksAdd } = require('./routes/marks/marks.add');
+const { marksAll } = require('./routes/marks/marks.get');
 
 
 const App = express()
@@ -40,6 +42,12 @@ App.get('/students/all', allStudents);
 App.delete('/students/drop', dropStudent);
 App.patch('/students/update', updateStudent);
 
+// CRUD OPERATIONS on Marks Table
+App.post('/marks/add', marksAdd);
+App.get('/marks/all', marksAll);
+// App.delete('/assignments/drop', dropStudent);
+// App.patch('/assignments/update', updateStudent);
+
 // CRUD OPERATIONS on Assignments Table
 App.post('/assignments/new', addAssignment);
 App.get('/assignments/all', allAssignments);
@@ -49,4 +57,4 @@ App.get('/assignments/all', allAssignments);
 
 
 
-App.listen(3000);
+App.listen(3000,()=> console.log('Server started'));
