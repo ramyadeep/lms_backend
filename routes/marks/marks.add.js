@@ -12,7 +12,7 @@ module.exports.marksAdd = async (req, res) => {
         return;
     }
 
-    const qry = `INSERT INTO Marks (c_id,f_id,s_id,mark) VALUES (${db.escape(_.toString(c_id))},${db.escape(f_id)},${db.escape(s_id)}, ${db.escape(_.toString(mark))});`; -
+    const qry = `INSERT INTO Marks (c_id,s_id,mark) VALUES (${db.escape(_.toString(c_id))},${db.escape(s_id)}, ${db.escape(_.toString(mark))});`; -
         db.query(qry, (err, result) => {
             if (err) {
                 res.status(500).send({ message: err.sqlMessage,qry });

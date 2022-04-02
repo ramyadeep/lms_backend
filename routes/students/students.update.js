@@ -1,9 +1,11 @@
 // import database connection
 const { mySqlConn } = require('../../database/db');
 const _ = require('lodash');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
-function generateDynamicQuery(params,db) {
+function generateDynamicQuery(params, db) {
     // Process SQL Query
     const { id, dept_id, password, contact, email } = params;
     let qry = `UPDATE Students SET `;
@@ -11,7 +13,9 @@ function generateDynamicQuery(params,db) {
         qry += `dept_id = ${db.escape(dept_id)},`;
     }
     if (password) {
-        qry += `password = ${db.escape(password)},`;
+        let hashedPassword;
+        bcrypt.hash(password, saltRounds).then((hash) => hashedPassword = hash);
+        qry += `password = ${db.escape(hashedPassword)},`;
     }
     if (contact) {
         qry += `contact = ${db.escape(contact)},`;
@@ -35,7 +39,7 @@ module.exports.updateStudent = async (req, res) => {
         res.send({ message: "Student Id is mandatory." });
         return
     }
-    const qry = generateDynamicQuery(req.body,db);
+    const qry = generateDynamicQuery(req.body, db);
 
     db.query(qry, (err, result) => {
         if (err) {

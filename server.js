@@ -15,6 +15,10 @@ const { addAssignment } = require('./routes/assignments/assignments.add');
 const { allAssignments } = require('./routes/assignments/assignments.all');
 const { marksAdd } = require('./routes/marks/marks.add');
 const { marksAll } = require('./routes/marks/marks.get');
+const { AdminLogin } = require('./auth/login/admin.login');
+const { StudentLogin } = require('./auth/login/student.login');
+const { FacultyLogin } = require('./auth/login/faculty.login');
+const { registerStudentToCourse } = require('./routes/enrollments/enrollStudent');
 
 
 const App = express()
@@ -24,7 +28,9 @@ App.use(express.json({ extended: false }));
 App.get('/', home)
 
 // unprotected routes
-App.post('/login', login);
+App.post('/login/admin', AdminLogin);
+App.post('/login/faculty', FacultyLogin);
+App.post('/login/student', StudentLogin);
 
 //  Protected routes Requires Authentication Token
 App.use(authenticateToken);  // use jwt authentication for the below routes
@@ -35,6 +41,8 @@ App.post('/courses/new', addCourse);
 App.get('/courses/all', allCourses);
 App.delete('/courses/drop', dropCourse);
 App.patch('/courses/update', updateCourse);
+
+App.post('/course-registration',registerStudentToCourse);
 
 // CRUD OPERATIONS on Students Table
 App.post('/students/new', addStudent);
@@ -57,4 +65,4 @@ App.get('/assignments/all', allAssignments);
 
 
 
-App.listen(3000,()=> console.log('Server started'));
+App.listen(3000,()=> console.log('Server started on port ',3000));
